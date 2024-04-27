@@ -71,14 +71,14 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (0);
 	*line = '\0';
-	while (ch->ch)
+	while (ch->ch && line)
 	{
 		if (len > 0)
 			len = len0(len, buf, &line, ch);
 		else
 			len = len1(fd, buf, &line, ch);
 	}
-	if (*line == '\0' || len < 0)
+	if (!line || *line == '\0' || len < 0)
 	{
 		free(line);
 		return (0);
